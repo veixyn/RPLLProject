@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('volumes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->double('volume', 3, 2)->default(0);
+            $table->double('volume', 5, 2)->default(0);
+            $table->string('type')->default(null);
+            $table->string('type_description')->default(null)->nullable();
             $table->timestamps();
         });
     }

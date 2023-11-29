@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Volume;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,23 +18,55 @@ class VolumeController extends Controller
 
     public function index()
     {
+        // $groupByRW = DB::select("SELECT users.rw, users.rt, volumes.type, SUM(volumes.volume) AS total
+        //                         FROM users
+        //                         INNER JOIN volumes ON users.id = volumes.user_id
+        //                         GROUP BY users.rw, users.rt, volumes.type
+        //                         ORDER BY users.rw, users.rt, volumes.type;");
+
+        $data = DB::select("SELECT users.rw, users.rt, SUM(volumes.volume) AS total, type
+                                    FROM users
+                                    INNER JOIN volumes ON users.id = volumes.user_id
+                                    GROUP BY users.rw, users.rt, type
+                                    ORDER BY users.rw, users.rt, SUM(volumes.volume) DESC;");
+
+        // $data1 = $data;
+
+        $curDate = date('Y-m-d H:i:s');
         $day = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
         $index = ['1', '2', '3', '4', '5'];
-        return view('volume.index', compact('day', 'index'));
+        // return dd($data);
+        return view('volume.index', compact('day', 'index', 'data', 'curDate'));
     }
 
     public function show()
     {
+        $day = date('d');
+        $days = date('l');
+        $perDay = DB::select("SELECT *
+                            FROM volumes
+                            WHERE DAY(created_at) = $day ");
+
+        $month = date('m');
+        $month2 = date('F');
+        $perMonth = DB::select("SELECT *
+                                FROM volumes
+                                WHERE MONTH(created_at) = $month ");
+
         $user_id = Auth::id();
-        $volume = DB::table('volumes')->where('user_id', $user_id)->get();
-        // $volume = DB::table('volumes')->get();
-        //Mengambil biodata user yang sedang login
+        $volume = Volume::latest()->where('user_id', $user_id)->get();
+        //Mengambil user yang sedang login
         $user = Auth::user();
-        //Jika biodata user belum ada, maka buat biodata baru
-        if (!$user->volume) {
-            $user->volume()->create();
-        }
-        return view('volume.show', compact('user', 'volume'));
+
+        $totalInput = Volume::where('user_id', $user_id)->latest()->count();
+        $totalKering = Volume::where('type', 'Kering')->where('user_id', $user_id)->sum('volume');
+        $totalBasah = Volume::where('type', 'Basah')->where('user_id', $user_id)->sum('volume');
+        $totalSampah = Volume::where('user_id', $user_id)->sum('volume');
+
+        // return dd($perMonth);
+        return view('volume.show', compact('user', 'volume', 'totalInput',
+                    'totalKering', 'totalBasah', 'totalSampah', 'perMonth', 'month2',
+                    'days', 'perDay'));
     }
 
     public function edit()
@@ -52,11 +85,15 @@ class VolumeController extends Controller
         $validated = $request->validate([
             'volume' => 'required|numeric|min:1|max:100',
             'user_id' => 'required',
+            'type' => 'required',
+            'type_description' => 'nullable'
         ]);
 
         $volume = Volume::create([
             'volume' => $validated['volume'],
             'user_id' => $validated['user_id'],
+            'type' => $validated['type'],
+            'type_description' => $validated['type_description'],
             'published_at' => $request->has('is_published') ? Carbon::now() : null,
         ]);
 

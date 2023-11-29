@@ -12,5 +12,11 @@ class Volume extends Model
     protected $fillable = [
         'volume',
         'user_id',
+        'type',
+        'type_description'
     ];
+
+    public function user(){
+        return $this->hasOne(User::class);
+    }
 }

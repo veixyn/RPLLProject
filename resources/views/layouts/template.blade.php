@@ -13,9 +13,6 @@
     <div class="container">
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 pt-1">
-                    <a class="link-secondary" href="#">Subscribe</a>
-                </div>
                 <div class="col-4 text-center">
                     <a class="blog-header-logo text-dark" href="#">AngkutKUY™</a>
                 </div>
@@ -34,7 +31,7 @@
                         <div class="dropdown-menu dropdown-menu-end">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -49,9 +46,10 @@
         @auth
             <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-center">
-                    <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Penjadwalan</a>
-                    <a class="p-2 link-secondary" href="{{ route('volume.create') }}">Input</a>
-                    <a class="p-2 link-secondary" href="{{ route('volume.show') }}">Data Sampah</a>
+                    <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Jadwal Angkut</a>
+                    <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Educational</a>
+                    <a class="p-2 link-secondary" href="{{ route('volume.create') }}">Buang Sampah</a>
+                    <a class="p-2 link-secondary" href="{{ route('volume.show') }}">Riwayat Sampah</a>
                 </nav>
             </div>
         @endauth
