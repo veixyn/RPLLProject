@@ -65,7 +65,7 @@
         </div>
 
         <div class="my-4">
-            <h3>Data Per Hari {{ $days }}</h3>
+            <h3>Data Per Hari {{ $localizedDay }}</h3>
             <div class="card mb-3">
                 <div class="card-body">
                     @foreach ($perDay as $perDays)
@@ -95,7 +95,41 @@
 
         <div class="my-4">
             <h3>Data Per Bulan {{ $month2 }}</h3>
-            <div class="card mb-3">
+            <div class="table-responsive">
+                <table class="table table-light" id="tabelPerBulan">
+                    <thead class="table table-primary">
+                        <tr>
+                            <th scope="col">RW</th>
+                            <th scope="col">RT</th>
+                            <th scope="col">Nama KK</th>
+                            <th scope="col">Volume Sampah</th>
+                            <th scope="col">Tipe Sampah</th>
+                            <th scope="col">Ditambahkan Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($perMonths as $perMonth)
+                        <tr class="">
+                            <td scope="row">{{ $perMonth->rw }}</td>
+                            <td scope="row">{{ $perMonth->rt }}</td>
+                            <td scope="row">{{ $perMonth->name }}</td>
+                            <td scope="row">{{ $perMonth->volume }}</td>
+                            <td scope="row">{{ $perMonth->type }}</td>
+                            <td scope="row">{{ $perMonth->created_at }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+                <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+                <script>
+                    let table = new DataTable('#tabelPerBulan');
+                </script>
+            </div>
+        </div>
+    @endsection
+
+    {{-- <div class="card mb-3">
                 <div class="card-body">
                     @foreach ($perMonth as $perMonths)
                     <div class="row">
@@ -113,12 +147,9 @@
                                 {{ $perMonths?->type ?? '-' }}
                             @endif
                         </div>
-                        {{-- <div class="col-sm-9 text-secondary">{{ $volumes?->type ?? '-' }} - {{ $volumes?->type_description ?? '-' }}</div> --}}
                         <div class="col-sm-9 text-secondary">{{ $perMonths?->created_at ?? '-' }}</div>
                     </div>
                     <hr>
                     @endforeach
                 </div>
-            </div>
-        </div>
-    @endsection
+            </div> --}}

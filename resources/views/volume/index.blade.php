@@ -15,9 +15,10 @@
     @endif
 
     <div class="container mt-5">
+        <h5>{{ $curDate }}</h5>
         <div class="table-responsive">
-            <table class="table table-primary">
-                <thead>
+            <table class="table table-light" id="tabelVolume">
+                <thead class="table table-primary">
                     <tr>
                         <th scope="col">RW</th>
                         <th scope="col">RT</th>
@@ -36,6 +37,11 @@
                     @endforeach
                 </tbody>
             </table>
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+            <script>
+                let table = new DataTable('#tabelVolume');
+            </script>
         </div>
 
     </div>

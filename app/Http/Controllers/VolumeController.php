@@ -24,34 +24,67 @@ class VolumeController extends Controller
         //                         GROUP BY users.rw, users.rt, volumes.type
         //                         ORDER BY users.rw, users.rt, volumes.type;");
 
-        $data = DB::select("SELECT users.rw, users.rt, SUM(volumes.volume) AS total, type
-                                    FROM users
-                                    INNER JOIN volumes ON users.id = volumes.user_id
-                                    GROUP BY users.rw, users.rt, type
-                                    ORDER BY users.rw, users.rt, SUM(volumes.volume) DESC;");
+        $curDate = date('Y-m-d');
+        // $curDate = "2023-10-27";
+        $data = DB::select("SELECT users.rw, users.rt, SUM(volumes.volume) AS total, volumes.type, MAX(volumes.created_at) AS latest_created_at
+                            FROM users
+                            INNER JOIN volumes ON users.id = volumes.user_id
+                            WHERE DATE(volumes.created_at) = '2023-11-30'
+                            GROUP BY users.rw, volumes.type, users.rt
+                            ORDER BY users.rw, users.rt, total DESC;
+                                    ;");
 
         // $data1 = $data;
 
-        $curDate = date('Y-m-d H:i:s');
-        $day = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
+        // $day = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
         $index = ['1', '2', '3', '4', '5'];
         // return dd($data);
-        return view('volume.index', compact('day', 'index', 'data', 'curDate'));
+        return view('volume.index', compact('index', 'data', 'curDate'));
     }
 
     public function show()
     {
         $day = date('d');
+        $perDay = Volume::whereDay('created_at', $day)->paginate(10);
+        // $perDay = DB::select("SELECT *
+        //                     FROM volumes
+        //                     WHERE DAY(created_at) = $day ");
+
         $days = date('l');
-        $perDay = DB::select("SELECT *
-                            FROM volumes
-                            WHERE DAY(created_at) = $day ");
+        switch ($days) {
+            case 'Monday':
+                $localizedDay = 'Senin';
+                break;
+            case 'Tuesday':
+                $localizedDay = 'Selasa';
+                break;
+            case 'Wednesday':
+                $localizedDay = 'Rabu';
+                break;
+            case 'Thursday':
+                $localizedDay = 'Kamis';
+                break;
+            case 'Friday':
+                $localizedDay = 'Jumat';
+                break;
+            case 'Saturday':
+                $localizedDay = 'Sabtu';
+                break;
+            case 'Sunday':
+                $localizedDay = 'Minggu';
+                break;
+
+            default:
+                # code...
+                break;
+        }
 
         $month = date('m');
         $month2 = date('F');
-        $perMonth = DB::select("SELECT *
+        $perMonths = DB::select("SELECT rw, rt, name, volume, type, volumes.created_at
                                 FROM volumes
-                                WHERE MONTH(created_at) = $month ");
+                                INNER JOIN users ON volumes.user_id = users.id
+                                WHERE MONTH(volumes.created_at) = '$month' ");
 
         $user_id = Auth::id();
         $volume = Volume::latest()->where('user_id', $user_id)->get();
@@ -65,8 +98,8 @@ class VolumeController extends Controller
 
         // return dd($perMonth);
         return view('volume.show', compact('user', 'volume', 'totalInput',
-                    'totalKering', 'totalBasah', 'totalSampah', 'perMonth', 'month2',
-                    'days', 'perDay'));
+                    'totalKering', 'totalBasah', 'totalSampah', 'perMonths', 'month2',
+                    'localizedDay', 'perDay'));
     }
 
     public function edit()

@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             VolumeSeeder::class,
+            CurrentDateVolumeSeeder::class,
         ]);
 
         // \App\Models\User::factory()->create([
