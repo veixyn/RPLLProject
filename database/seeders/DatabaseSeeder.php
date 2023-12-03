@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             VolumeSeeder::class,
             CurrentDateVolumeSeeder::class,
+            EducationalSeeder::class,
         ]);
 
         // \App\Models\User::factory()->create([

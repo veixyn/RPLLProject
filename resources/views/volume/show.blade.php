@@ -24,18 +24,6 @@
             </x-dashboard-div>
         </div>
 
-        <div class="dropdown open">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                        Dropdown Colored
-                    </button>
-            <div class="dropdown-menu" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="#">Tampilkan data per Hari</a>
-                <a class="dropdown-item" href="#">Tampilkan data per Bulan</a>
-                <a class="dropdown-item" href="#">Tampilkan data per Tahun</a>
-            </div>
-        </div>
-
         <div class="my-4">
             <div class="card mb-3">
                 <div class="card-body">
@@ -63,8 +51,10 @@
                 </div>
             </div>
         </div>
+        </div>
+    @endsection
 
-        <div class="my-4">
+    {{-- <div class="my-4">
             <h3>Data Per Hari {{ $localizedDay }}</h3>
             <div class="card mb-3">
                 <div class="card-body">
@@ -84,7 +74,6 @@
                                 {{ $perDays?->type ?? '-' }}
                             @endif
                         </div>
-                        {{-- <div class="col-sm-9 text-secondary">{{ $volumes?->type ?? '-' }} - {{ $volumes?->type_description ?? '-' }}</div> --}}
                         <div class="col-sm-9 text-secondary">{{ $perDays?->created_at ?? '-' }}</div>
                     </div>
                     <hr>
@@ -125,9 +114,7 @@
                 <script>
                     let table = new DataTable('#tabelPerBulan');
                 </script>
-            </div>
-        </div>
-    @endsection
+            </div> --}}
 
     {{-- <div class="card mb-3">
                 <div class="card-body">

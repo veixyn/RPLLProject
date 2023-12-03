@@ -15,7 +15,7 @@ class CurrentDateVolumeSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        for ($i=0; $i < 5; $i++) {
+        for ($i=0; $i < 50; $i++) {
             $user_id = $faker->numberBetween(1, 50);
             $volume = $faker->randomFloat(2, 1, 100);
             $type = $faker->randomElement(['Kering', 'Basah']);

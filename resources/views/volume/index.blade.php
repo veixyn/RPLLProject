@@ -15,37 +15,151 @@
     @endif
 
     <div class="container mt-5">
-        <h5>{{ $curDate }}</h5>
         <div class="table-responsive">
+            <label for="tabelVolume">Data Volume Sampah per Hari ini ({{$curDate}})</label>
             <table class="table table-light" id="tabelVolume">
                 <thead class="table table-primary">
                     <tr>
                         <th scope="col">RW</th>
                         <th scope="col">RT</th>
-                        <th scope="col">Volume Sampah</th>
-                        <th scope="col">Tipe Sampah</th>
+                        <th scope="col">Sampah Basah (kg)</th>
+                        <th scope="col">Sampah Kering (kg)</th>
+                        <th scope="col">Total Sampah (kg)</th>
+                        {{-- <th scope="col">Jadwal Angkut</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $datas)
-                        <tr class="">
-                            <td scope="row">{{ $datas->rw }}</td>
-                            <td>{{ $datas->rt }}</td>
-                            <td>{{ $datas->total }}</td>
-                            <td>{{ $datas->type }}</td>
+                        <tr>
+                            <td scope="row">{{ $data[0]->rw }}</td>
+                            <td>{{ $data[0]->rt }}</td>
+                            <td>{{ $data[0]->Basah }}</td>
+                            <td>{{ $data[0]->Kering }}</td>
+                            <td>{{ $data[0]->Total }}</td>
+                            {{-- <td>
+                                @if ($data[0]->Total == 0)
+                                -
+                            @else
+
+                            Senin, 06:30 WIB
+                            @endif
+                            </td> --}}
                         </tr>
-                    @endforeach
+                        <tr>
+                            <td scope="row">{{ $data[1]->rw }}</td>
+                            <td>{{ $data[1]->rt }}</td>
+                            <td>{{ $data[1]->Basah }}</td>
+                            <td>{{ $data[1]->Kering }}</td>
+                            <td>{{ $data[1]->Total }}</td>
+                            {{-- <td>@if ($data[1]->Total == 0)
+                                -
+                            @else
+
+                            Senin, 07:30 WIB
+                            @endif
+                            </td> --}}
+                        </tr>
+                        <tr>
+                            <td scope="row">{{ $data[2]->rw }}</td>
+                            <td>{{ $data[2]->rt }}</td>
+                            <td>{{ $data[2]->Basah }}</td>
+                            <td>{{ $data[2]->Kering }}</td>
+                            <td>{{ $data[2]->Total }}</td>
+                            {{-- <td>
+                                @if ($data[2]->Total == 0)
+                                    -
+                                @else
+
+                                Senin, 08:30 WIB
+                                @endif
+                            </td> --}}
+                        </tr>
+                        <tr>
+                            <td scope="row">{{ $data[3]->rw }}</td>
+                            <td>{{ $data[3]->rt }}</td>
+                            <td>{{ $data[3]->Basah }}</td>
+                            <td>{{ $data[3]->Kering }}</td>
+                            <td>{{ $data[3]->Total }}</td>
+                            {{-- <td>
+                                @if ($data[3]->Total == 0)
+                                    -
+                                @else
+
+                                Rabu, 06:30 WIB
+                                @endif
+                            </td> --}}
+                        </tr>
+                        <tr>
+                            <td scope="row">{{ $data[4]->rw }}</td>
+                            <td>{{ $data[4]->rt }}</td>
+                            <td>{{ $data[4]->Basah }}</td>
+                            <td>{{ $data[4]->Kering }}</td>
+                            <td>{{ $data[4]->Total }}</td>
+                            {{-- <td>
+                                @if ($data[4]->Total == 0)
+                                    -
+                                @else
+
+                                Rabu, 07:30 WIB
+                                @endif
+                            </td> --}}
+                        </tr>
+                        <tr>
+                            <td scope="row">{{ $data[5]->rw }}</td>
+                            <td>{{ $data[5]->rt }}</td>
+                            <td>{{ $data[5]->Basah }}</td>
+                            <td>{{ $data[5]->Kering }}</td>
+                            <td>{{ $data[5]->Total }}</td>
+                            {{-- <td>
+                                Rabu, 08:30 WIB
+                            </td> --}}
+                        </tr>
+                        <tr>
+                            <td scope="row">{{ $data[6]->rw }}</td>
+                            <td>{{ $data[6]->rt }}</td>
+                            <td>{{ $data[6]->Basah }}</td>
+                            <td>{{ $data[6]->Kering }}</td>
+                            <td>{{ $data[6]->Total }}</td>
+                            {{-- <td>Jumat, 06:30 WIB</td> --}}
+                        </tr>
+                        <tr>
+                            <td scope="row">{{ $data[7]->rw }}</td>
+                            <td>{{ $data[7]->rt }}</td>
+                            <td>{{ $data[7]->Basah }}</td>
+                            <td>{{ $data[7]->Kering }}</td>
+                            <td>{{ $data[7]->Total }}</td>
+                            {{-- <td>Jumat, 07:30 WIB</td> --}}
+                        </tr>
+                        <tr>
+                            <td scope="row">{{ $data[8]->rw }}</td>
+                            <td>{{ $data[8]->rt }}</td>
+                            <td>{{ $data[8]->Basah }}</td>
+                            <td>{{ $data[8]->Kering }}</td>
+                            <td>{{ $data[8]->Total }}</td>
+                            {{-- <td>Jumat, 08:30 WIB</td> --}}
+                        </tr>
                 </tbody>
             </table>
             <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
             <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
             <script>
-                let table = new DataTable('#tabelVolume');
+                let table = new DataTable('#tabelVolume', {
+                    order: [[4, 'desc']]
+                });
             </script>
         </div>
 
     </div>
 @endsection
+
+{{-- @foreach ($data as $datas)
+                        <tr class="">
+                            <td scope="row">{{ $datas->rw }}</td>
+                            <td>{{ $datas->rt }}</td>
+                            <td>{{ $datas->Basah }}</td>
+                            <td>{{ $datas->Kering }}</td>
+                            <td>{{ $datas->Total }}</td>
+                        </tr>
+                    @endforeach --}}
 
 {{-- <h3>Waktu Sekarang: {{ $curDate }}</h3> --}}
         {{-- <div class="accordion accordion-flush" id="accordionFlushExample">

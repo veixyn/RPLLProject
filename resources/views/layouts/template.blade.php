@@ -49,12 +49,19 @@
             <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-center">
                     <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Jadwal Angkut</a>
-                    {{-- <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Educational</a> --}}
+                    <a class="p-2 link-secondary" href="{{ route('educational-list') }}">Educational</a>
+                    @if ( Auth::user()->is_admin == false )
                     <a class="p-2 link-secondary" href="{{ route('volume.create') }}">Buang Sampah</a>
+                    @endif
                     <a class="p-2 link-secondary" href="{{ route('volume.show') }}">Riwayat Sampah</a>
+                    @if ( Auth::user()->is_admin == true )
+                        <a class="p-2 link-secondary" href="{{ route('report.index') }}">Laporan Sampah</a>
+                    @endif
                 </nav>
             </div>
         @endauth
+
+        @yield('nav')
     </div>
 
     <main class="container">
