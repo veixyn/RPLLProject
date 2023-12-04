@@ -4,7 +4,7 @@
 
     @section('content')
         <div class="mt-4 p-5 bg-primary text-white rounded">
-            <h1>Data Volume Sampah</h1>
+            <h1>Riwayat Sampah yang telah Dibuang</h1>
         </div>
 
         @if (session()->has('success'))

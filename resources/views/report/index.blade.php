@@ -1,12 +1,12 @@
 @extends('layouts.template')
 
-@section('title', 'title')
+@section('title', 'Laporan Pembuangan Sampah')
 
 @section('content')
 
 <form method="post" action="{{ route('report.show') }}">
     @csrf
-    <label for="month">Select Month:</label>
+    <label for="month">Pilih Data Bulan yang mau Ditampilkan:</label>
     <select name="month" id="month">
         @foreach ($months as $month)
             <option value="{{ $month->month }}">{{ $month->month }}</option>
@@ -14,6 +14,7 @@
     </select>
     <input type="submit" value="Show Data">
 </form>
+<br>
 
 @if (isset($data))
     <!-- Display table based on selected month -->

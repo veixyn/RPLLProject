@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Landing Page')
+@section('title', 'Educational')
 
 @section('nav')
     <div class="nav-scroller py-1 mb-2">
@@ -29,9 +29,8 @@
                             {{ $educational->educationalCategory?->name ?? 'Uncategorized' }}
                         </strong>
                         <h3 class="mb-0">{{ $educational->title }}</h3>
-                        <div class="mb-1 text-muted">{{ $educational->updated_at }}</div>
-                        <p class="card-text mb-auto">{{ Str::limit($educational->body, 50, ' ...') }}</p>
-                        <a href="{{ route('educational.show', $educational) }}" class="stretched-link">Continue reading</a>
+                        <p class="card-text mb-auto">{{ Str::limit($educational->body, 100, ' ...') }}</p>
+                        <a href="{{ route('educational.show', $educational) }}" class="stretched-link">Baca lebih lanjut</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
                         @if ($educational->image)

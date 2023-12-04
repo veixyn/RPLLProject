@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="mt-4 p-5 bg-black text-white rounded">
-        <h1>All Educational</h1>
+        <h1>Data untuk Laman Educational</h1>
         {{-- Add button --}}
         <a href="{{ route('educational.create') }}" class="btn btn-primary btn-sm">Add New Educational</a>
     </div>

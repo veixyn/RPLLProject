@@ -4,6 +4,7 @@ use App\Http\Controllers\EducationalCategoryController;
 use App\Http\Controllers\EducationalController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\VolumeController;
 use App\Models\EducationalCategory;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [VolumeController::class, 'index'])->name('volume.index');
+Route::get('/volume', [VolumeController::class, 'index'])->name('volume.index');
 Route::get('/volume/show', [VolumeController::class, 'show'])->name('volume.show');
 Route::get('/volume/edit', [VolumeController::class, 'edit'])->name('volume.edit');
 Route::put('/volume/edit', [VolumeController::class, 'update'])->name('volume.update');
@@ -40,5 +41,6 @@ Route::resource('/educational', EducationalController::class);
 
 Route::resource('educational-categories', EducationalCategoryController::class);
 
+Route::get('/', [ScheduleController::class, 'index'])->name('schedule.index');
 
 // Route::resource('volume', VolumeController::class);

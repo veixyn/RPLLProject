@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Add Waste')
+@section('title', 'Buang Sampah')
 
 @section('content')
 
@@ -31,7 +31,7 @@
         <label for="volume" class="form-label">Volume</label>
         <input type="number"
             class="form-control" name="volume" id="volume" aria-describedby="helpId" placeholder="dalam Kg" step=".01">
-        <small id="helpId" class="form-text text-muted">Masukkan jumlah sampah</small>
+        <small id="helpId" class="form-text text-muted">Masukkan jumlah sampah (dalam Kg)</small>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

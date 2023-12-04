@@ -25,6 +25,7 @@ class VolumeController extends Controller
         //                         ORDER BY users.rw, users.rt, volumes.type;");
 
         $curDate = date('Y-m-d');
+        $prevDate = date('Y-m-d', strtotime($curDate . ' -1 day'));
         // $curDate = "2023-10-27";
         $data = DB::select("SELECT
                             u.rw,
@@ -59,9 +60,9 @@ class VolumeController extends Controller
 
         // $schedule = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
         // $index = ['1', '2', '3', '4', '5'];
-        // return dd(array_merge($data, $schedule));
 
-        return view('volume.index', compact('data', 'curDate'));
+        // return dd($prevDate);
+        return view('volume.index', compact('data', 'curDate', 'prevDate'));
     }
 
     public function show()

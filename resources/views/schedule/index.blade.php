@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Data Sampah')
+@section('title', 'Jadwal Angkut')
 
 @section('content')
     {{-- <div class="mt-4 p-5 bg-black text-white rounded">
@@ -16,7 +16,8 @@
 
     <div class="container mt-5">
         <div class="table-responsive">
-            <label for="tabelVolume">Data Volume Sampah per Hari ini ({{$curDate}})</label>
+            <label for="tabelVolume">Data Volume Sampah per {{$prevDate}}<br>
+            Semua data yang telah diinput / dibuang kemarin akan dihitung dan dijadwalkan pengangkutannya untuk hari ini. ({{$curDate}})</label>
             <table class="table table-light" id="tabelVolume">
                 <thead class="table table-primary">
                     <tr>
@@ -25,7 +26,7 @@
                         <th scope="col">Sampah Basah (kg)</th>
                         <th scope="col">Sampah Kering (kg)</th>
                         <th scope="col">Total Sampah (kg)</th>
-                        {{-- <th scope="col">Jadwal Angkut</th> --}}
+                        <th scope="col">Jadwal Angkut</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,14 +36,13 @@
                             <td>{{ $data[0]->Basah }}</td>
                             <td>{{ $data[0]->Kering }}</td>
                             <td>{{ $data[0]->Total }}</td>
-                            {{-- <td>
+                            <td>
                                 @if ($data[0]->Total == 0)
                                 -
-                            @else
-
-                            Senin, 06:30 WIB
-                            @endif
-                            </td> --}}
+                                @else
+                                06:30 WIB
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">{{ $data[1]->rw }}</td>
@@ -50,13 +50,12 @@
                             <td>{{ $data[1]->Basah }}</td>
                             <td>{{ $data[1]->Kering }}</td>
                             <td>{{ $data[1]->Total }}</td>
-                            {{-- <td>@if ($data[1]->Total == 0)
+                            <td>@if ($data[1]->Total == 0)
                                 -
-                            @else
-
-                            Senin, 07:30 WIB
-                            @endif
-                            </td> --}}
+                                @else
+                                07:30 WIB
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">{{ $data[2]->rw }}</td>
@@ -64,14 +63,13 @@
                             <td>{{ $data[2]->Basah }}</td>
                             <td>{{ $data[2]->Kering }}</td>
                             <td>{{ $data[2]->Total }}</td>
-                            {{-- <td>
+                            <td>
                                 @if ($data[2]->Total == 0)
-                                    -
+                                -
                                 @else
-
-                                Senin, 08:30 WIB
+                                08:30 WIB
                                 @endif
-                            </td> --}}
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">{{ $data[3]->rw }}</td>
@@ -79,14 +77,13 @@
                             <td>{{ $data[3]->Basah }}</td>
                             <td>{{ $data[3]->Kering }}</td>
                             <td>{{ $data[3]->Total }}</td>
-                            {{-- <td>
+                            <td>
                                 @if ($data[3]->Total == 0)
-                                    -
+                                -
                                 @else
-
-                                Rabu, 06:30 WIB
+                                09:30 WIB
                                 @endif
-                            </td> --}}
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">{{ $data[4]->rw }}</td>
@@ -94,14 +91,13 @@
                             <td>{{ $data[4]->Basah }}</td>
                             <td>{{ $data[4]->Kering }}</td>
                             <td>{{ $data[4]->Total }}</td>
-                            {{-- <td>
+                            <td>
                                 @if ($data[4]->Total == 0)
                                     -
                                 @else
-
-                                Rabu, 07:30 WIB
+                                10:30 WIB
                                 @endif
-                            </td> --}}
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">{{ $data[5]->rw }}</td>
@@ -109,9 +105,13 @@
                             <td>{{ $data[5]->Basah }}</td>
                             <td>{{ $data[5]->Kering }}</td>
                             <td>{{ $data[5]->Total }}</td>
-                            {{-- <td>
-                                Rabu, 08:30 WIB
-                            </td> --}}
+                            <td>
+                                @if ($data[5]->Total == 0)
+                                -
+                            @else
+                            11:30 WIB
+                            @endif
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">{{ $data[6]->rw }}</td>
@@ -119,7 +119,13 @@
                             <td>{{ $data[6]->Basah }}</td>
                             <td>{{ $data[6]->Kering }}</td>
                             <td>{{ $data[6]->Total }}</td>
-                            {{-- <td>Jumat, 06:30 WIB</td> --}}
+                            <td>
+                                @if ($data[6]->Total == 0)
+                                -
+                            @else
+                            12:30 WIB
+                            @endif
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">{{ $data[7]->rw }}</td>
@@ -127,7 +133,13 @@
                             <td>{{ $data[7]->Basah }}</td>
                             <td>{{ $data[7]->Kering }}</td>
                             <td>{{ $data[7]->Total }}</td>
-                            {{-- <td>Jumat, 07:30 WIB</td> --}}
+                            <td>
+                                @if ($data[7]->Total == 0)
+                                -
+                            @else
+                            13:30 WIB
+                            @endif
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">{{ $data[8]->rw }}</td>
@@ -135,7 +147,13 @@
                             <td>{{ $data[8]->Basah }}</td>
                             <td>{{ $data[8]->Kering }}</td>
                             <td>{{ $data[8]->Total }}</td>
-                            {{-- <td>Jumat, 08:30 WIB</td> --}}
+                            <td>
+                                @if ($data[8]->Total == 0)
+                                -
+                            @else
+                                14:30 WIB
+                            @endif
+                            </td>
                         </tr>
                 </tbody>
             </table>

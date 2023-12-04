@@ -48,12 +48,18 @@
         @auth
             <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-center">
-                    <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Jadwal Angkut</a>
-                    <a class="p-2 link-secondary" href="{{ route('educational-list') }}">Educational</a>
-                    @if ( Auth::user()->is_admin == false )
-                    <a class="p-2 link-secondary" href="{{ route('volume.create') }}">Buang Sampah</a>
+                    <a class="p-2 link-secondary" href="{{ route('schedule.index') }}">Jadwal Angkut Hari ini</a>
+                    @if ( Auth::user()->is_admin == true )
+                        <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Data Sampah Hari Ini</a>
                     @endif
-                    <a class="p-2 link-secondary" href="{{ route('volume.show') }}">Riwayat Sampah</a>
+                    <a class="p-2 link-secondary" href="{{ route('educational-list') }}">Educational</a>
+                    @if ( Auth::user()->is_admin == true )
+                        <a class="p-2 link-secondary" href="{{ route('educational.index') }}">Edit Educational</a>
+                    @endif
+                    @if ( Auth::user()->is_admin == false )
+                        <a class="p-2 link-secondary" href="{{ route('volume.create') }}">Buang Sampah</a>
+                        <a class="p-2 link-secondary" href="{{ route('volume.show') }}">Riwayat Sampah</a>
+                    @endif
                     @if ( Auth::user()->is_admin == true )
                         <a class="p-2 link-secondary" href="{{ route('report.index') }}">Laporan Sampah</a>
                     @endif
