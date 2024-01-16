@@ -30,10 +30,11 @@
                     <input class="form-control" type="file" id="image" name="image">
                 </div>
                 <div class="mb-3 col-md-12 col-sm-12">
-                    <label for="body" class="form-label">Body</label>
+                    <label for="body" class="form-label">Description</label>
                     <textarea class="form-control" rows="10" name="body">{{ old('body') }}</textarea>
                 </div>
                 <div class="mb-3 col-md-12 col-sm-12">
+                    <label for="educational_category_id" class="form-label">Category</label>
                     <select class="form-select form-select-lg mb-3" name="educational_category_id">
                         <option>No Category</option>
                         @foreach ($educationalCategories as $category)

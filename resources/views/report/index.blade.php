@@ -17,7 +17,6 @@
 <br>
 
 @if (isset($data))
-    <!-- Display table based on selected month -->
     <h2>Data untuk Bulan: {{ $selectedMonth }}</h2>
     <div class="table-responsive">
         <table class="table table-light" id="tabelReport">

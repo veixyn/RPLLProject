@@ -6,7 +6,6 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <a class="p-2 link-secondary" href="{{ route('educational-list') }}"> All</a>
-            {{-- Tampilkan semua Category --}}
             @php($categoryMenus = App\Models\EducationalCategory::all())
 
             @foreach ($categoryMenus as $categoryMenu)

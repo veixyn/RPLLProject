@@ -26,8 +26,12 @@
                     @else
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" v-pre>
+                            @if (Auth::user()->is_admin == false && Auth::user()->is_crosschecker == false && Auth::user()->is_employee == false)
+                                {{ Auth::user()->name }} - RW {{Auth::user()->rw}} - RT {{Auth::user()->rt}}
+                            @else
                             {{ Auth::user()->name }} -
                             {{ Auth::user()->email }}
+                            @endif
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end">
@@ -48,9 +52,9 @@
         @auth
             <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-center">
-                    <a class="p-2 link-secondary" href="{{ route('schedule.index') }}">Jadwal Angkut Hari ini</a>
+                    {{-- <a class="p-2 link-secondary" href="{{ route('schedule.index') }}">Jadwal Angkut Hari ini</a>
                     @if ( Auth::user()->is_admin == true )
-                        <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Data Sampah Hari Ini</a>
+
                     @endif
                     <a class="p-2 link-secondary" href="{{ route('educational-list') }}">Educational</a>
                     @if ( Auth::user()->is_admin == true )
@@ -59,9 +63,24 @@
                     @if ( Auth::user()->is_admin == false )
                         <a class="p-2 link-secondary" href="{{ route('volume.create') }}">Buang Sampah</a>
                         <a class="p-2 link-secondary" href="{{ route('volume.show') }}">Riwayat Sampah</a>
-                    @endif
+                    @endif --}}
                     @if ( Auth::user()->is_admin == true )
+                        <a class="p-2 link-secondary" href="{{ route('schedule.index') }}">Jadwal Angkut Hari ini</a>
+                        <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Data Sampah Hari Ini</a>
+                        <a class="p-2 link-secondary" href="{{ route('educational-list') }}">Educational</a>
+                        <a class="p-2 link-secondary" href="{{ route('educational.index') }}">Edit Educational</a>
                         <a class="p-2 link-secondary" href="{{ route('report.index') }}">Laporan Sampah</a>
+                    @elseif ( Auth::user()->is_employee == true )
+                        <a class="p-2 link-secondary" href="{{ route('schedule.index') }}">Jadwal Angkut Hari ini</a>
+                    @elseif ( Auth::user()->is_crosschecker == true)
+                        <a class="p-2 link-secondary" href="{{ route('schedule.index') }}">Jadwal Angkut Hari ini</a>
+                        <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Data Sampah Hari Ini</a>
+                    @else
+                        <a class="p-2 link-secondary" href="{{ route('schedule.index') }}">Jadwal Angkut Hari ini</a>
+                        <a class="p-2 link-secondary" href="{{ route('volume.index') }}">Data Sampah Hari Ini</a>
+                        <a class="p-2 link-secondary" href="{{ route('educational-list') }}">Educational</a>
+                        <a class="p-2 link-secondary" href="{{ route('volume.create') }}">Buang Sampah</a>
+                        <a class="p-2 link-secondary" href="{{ route('volume.show') }}">Riwayat Sampah</a>
                     @endif
                 </nav>
             </div>

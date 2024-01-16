@@ -3,10 +3,6 @@
 @section('title', 'Data Sampah')
 
 @section('content')
-    {{-- <div class="mt-4 p-5 bg-black text-white rounded">
-        <h1>All Articles</h1>
-        <a href="{{ route('articles.create') }}" class="btn btn-primary btn-sm">Add New Articles</a>
-    </div> --}}
 
     @if (session()->has('success'))
     <div class="alert alert-success mt-4">
@@ -25,7 +21,6 @@
                         <th scope="col">Sampah Basah (kg)</th>
                         <th scope="col">Sampah Kering (kg)</th>
                         <th scope="col">Total Sampah (kg)</th>
-                        {{-- <th scope="col">Jadwal Angkut</th> --}}
                     </tr>
                 </thead>
                 <tbody>

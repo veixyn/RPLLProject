@@ -9,6 +9,7 @@
     @csrf
 
     <div class="mb-3">
+        <label for="user_id" class="form-label"><b>Batas Pembuangan Sampah Jam 24:00 (Tengah Malam)</b></label>
         <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{$user_id}}">
     </div>
 

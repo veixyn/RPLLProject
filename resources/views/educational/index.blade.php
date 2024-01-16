@@ -6,7 +6,6 @@
 
     <div class="mt-4 p-5 bg-black text-white rounded">
         <h1>Data untuk Laman Educational</h1>
-        {{-- Add button --}}
         <a href="{{ route('educational.create') }}" class="btn btn-primary btn-sm">Add New Educational</a>
     </div>
 
@@ -14,7 +13,7 @@
     <div class="alert alert-success mt-4">
         {{ session()->get('success') }}
     </div>
-@endif
+    @endif
 
     <div class="container mt-5">
         <table class="table table-bordered mb-5">

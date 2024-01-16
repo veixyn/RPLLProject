@@ -15,7 +15,7 @@ class CurrentDateVolumeSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        for ($i=0; $i < 50; $i++) {
+        for ($i=0; $i < 10; $i++) {
             $user_id = $faker->numberBetween(1, 50);
             $volume = $faker->randomFloat(2, 1, 100);
             $type = $faker->randomElement(['Kering', 'Basah']);
@@ -24,7 +24,8 @@ class CurrentDateVolumeSeeder extends Seeder
             } else {
                 $type_description = null;
             };
-            $created_at = $faker->dateTimeBetween('-3 hours', 'now');
+            // $created_at = $faker->dateTimeBetween('-10 hours', 'now');
+            $created_at = $faker->dateTimeBetween('now', '+6 hours');
 
             DB::table('volumes')->insert([
                 'user_id' => $user_id,
